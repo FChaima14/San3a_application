@@ -17,10 +17,10 @@ app.get('/', (req, res)=>{
      res.send('hello to San3a api')
 })
 //databse connection
-CONECTION_URL='mongodb+srv://chaima:chaima104@cluster0.rvmoq.mongodb.net/?retryWrites=true&w=majority'
+MONGODB_URI='mongodb+srv://chaima:chaima104@cluster0.rvmoq.mongodb.net/?retryWrites=true&w=majority'
 const PORT = process.env.PORT|| 5000;
 //app.listen(PORT, ()=>console.log(`Server Running on port :${PORT} `))
-mongoose.connect(process.env.CONECTION_URL, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true})
      .then(()=> app.listen(PORT, ()=>console.log(`Server Running on port :${PORT} `)))
      .catch((error)=> console.log(error.message));
 
