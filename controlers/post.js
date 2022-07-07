@@ -39,13 +39,14 @@ export const createPost=async(req, res) =>{
 }
 //update a post related to a Id
 export const updatePost=async(req, res) =>{
-    const {id : _id}=req.params;  //get the id 
-    const updatedPost=req.body; // get the body of request
-    if(!mongoose.Types.ObjectId.isValid(_id)){
+    const {id}=req.params;
+    const {title, description, image, creator, tags  }=req.body; // get the body of request
+    if(!mongoose.Types.ObjectId.isValid(id)){
         return res.status(404).send('No object match to this Id') // in the case of the id is not exist the server return 404 not found
     }
-    const newPost=await post.findByIdAndUpdate(_id, updatedPost, {new :true} );
-    res.json(newPost)
+    const updatedPost={creator, title, description, image, tags, _id: id }
+    await post.findByIdAndUpdate(id, updatedPost, { new: true });
+    res.json(updatedPost)
 }
 
 //delete a post related to an Id 
